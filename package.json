@@ -1,0 +1,19 @@
+{
+  "name": "econify",
+  "version": "1.0.0",
+  "description": "The code challenge for econify.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ironpup/econify-code-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ironpup/econify-code-challenge/issues"
+  },
+  "homepage": "https://github.com/ironpup/econify-code-challenge#readme"
+}
