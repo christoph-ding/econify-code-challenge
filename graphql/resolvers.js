@@ -4,6 +4,6 @@ export default function resolvers () {
   const models = sequelize.models;
 
   return {
-    RootQuery: {}
+    Query: {}
   }
 }

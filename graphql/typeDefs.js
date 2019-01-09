@@ -1,19 +1,18 @@
-
-const typeDefinitions = `
-  type Organization = {
+const typeDefs = `
+  type Organization {
     name: String!,
     createdAt: String,
     updatedAt: String
   } 
 
-  type Event = {
+  type Event {
     date: String!,
     description: String,
     createdAt: String,
     updatedAt: String
   }
 
-  type Location = {
+  type Location {
     name: String!,
     address: String,
     latitude: String,
@@ -24,16 +23,23 @@ const typeDefinitions = `
 
   # the schema allows the following query:
   type Query {
-  }
-
-  # this schema allows the following mutation:
-  type Mutation {
+    organizations: [Organization]
+    events: [Event]
+    locations: [Location]
   }
 
   schema {
     query: Query
-    mutation: Mutation
   }
 `
 
-export default typeDefinitions;
+export default typeDefs;
+
+  // # this schema allows the following mutation:
+  // type Mutation {
+  // }
+
+  // schema {
+  //   query: Query
+  //   mutation: Mutation
+  // }

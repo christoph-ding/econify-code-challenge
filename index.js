@@ -14,10 +14,12 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers: resolvers()
 });
-app.use('/graphql', graphqlExpress({ schema }));
 
 // server
 var app = express();
+
+app.use('/graphql', graphqlExpress({ schema }));
+
 app.listen(port, () => { 
     console.log('listening on port ', port)
 })
