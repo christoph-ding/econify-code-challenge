@@ -17,5 +17,5 @@ export default function (sequelize) {
 
   // User.associate = (models) => {
   //   User.hasMany(models.Project);
-  // };    
+  // };
 }
