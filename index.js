@@ -1,7 +1,9 @@
-var express = require('express');
+const express = require('express');
 
-import { graphqlExpress } from 'graphql-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
+// import { graphqlExpress } from 'graphql-server-express';
+// const graphqlExpress = require('graphql-server-express').graphqlExpress;
+
+const makeExecutableSchema = require('graphql-tools').makeExecutableSchema;
 
 // constants
 const port = 3000;
