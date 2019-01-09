@@ -29,7 +29,7 @@ export default function resolvers () {
           'id': id
         }
       },
-      organizations: () => {
+      organizations () {
         return organizations
       },
       event (root, {id}, context) {
@@ -37,16 +37,23 @@ export default function resolvers () {
           'id': id
         }
       },
-      events: () => {
+      events () {
         return events
       },
-      location: () => {
+      location () {
         return {
           'id': id
         }
       },
-      locations: () => {
+      locations () {
         return locations
+      }
+    },
+
+    Mutation: {
+      test () {
+        console.log('doing something...')
+        return 'did something with your mutation'
       }
     }
   }

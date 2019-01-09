@@ -23,7 +23,7 @@ const typeDefs = `
     createdAt: String,
     updatedAt: String
   }
-
+o
   # the schema allows the following query:
   type Query {
     organization(id: ID!): Organization
@@ -34,8 +34,13 @@ const typeDefs = `
     locations: [Location]
   }
 
+  type Mutation {
+    test: String
+  }
+
   schema {
-    query: Query
+    query: Query,
+    mutation: Mutation
   }
 `
 
