@@ -1,13 +1,14 @@
 const typeDefs = `
   type Organization {
     id: ID!,
-    name: String,
+    name: String!,
     createdAt: String,
     updatedAt: String
   } 
 
   type Event {
     id: ID,
+    name: String!,
     date: String,
     description: String,
     createdAt: String,
@@ -37,7 +38,7 @@ const typeDefs = `
 
   type Mutation {
     createOrganization(name: String!): Organization!
-    createEvent: String
+    createEvent(name: String!, date: String, description: String): Event!
     createLocation: String
   }
 

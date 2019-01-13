@@ -73,10 +73,23 @@ export default function resolvers () {
         })
       },
 
-      createEvent () {
-        console.log('creating event')
-        return 'creating event'
-      },
+      createEvent (root, {name, date, description}, context) {
+        return Promise.resolve()
+        .then(() => {
+          return models.Event.create(
+            {name: name,
+             date: date,
+             description: description
+            }
+          )
+        })
+        .then((item) => {
+          return item
+        })
+        .catch((err) => {
+          return err
+        })
+      },      
 
       createLocation () {
         console.log('creating location')
