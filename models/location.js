@@ -15,10 +15,6 @@ export default function (sequelize) {
         type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
-    } 
-
-  // User.associate = (models) => {
-  //   User.hasMany(models.Project);
-  // };    
+    }
   })
 }

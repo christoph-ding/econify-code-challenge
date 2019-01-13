@@ -29,35 +29,81 @@ export default function resolvers () {
           'id': id
         }
       },
-      organizations () {
-        return organizations
+      organizations (root, args, context) {
+        return models.Organization.findAll({}, context);
       },
       event (root, {id}, context) {
         return {
           'id': id
         }
       },
-      events () {
-        return events
+      events (root, args, context) {
+        return models.Event.findAll({}, context);
       },
       location () {
         return {
           'id': id
         }
       },
-      locations () {
-        return locations
+      locations (root, args, context) {
+        return models.Location.findAll({}, context);
+      },
+
+      test () {
+        console.log(" ... testing ...")
+        models.Organization.create({
+          id: '1000000123',
+          name: 'test'
+        })
+        return 'hey'
       }
     },
 
     Mutation: {
-      test () {
-        console.log('doing something...')
-        return 'did something with your mutation'
+      createOrganization (root, {name}, context) {
+        return Promise.resolve()
+        .then(() => {
+          return models.Organization.create({name: name})
+        })
+        .then((item) => {
+          return item
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
+      createEvent () {
+        console.log('creating event')
+        return 'creating event'
+      },
+
+      createLocation () {
+        console.log('creating location')
+        return 'creating location'
       }
     }
   }
 }
+
+  // resolve (source, args) {
+  //   return models.quote
+  //     .findById(args.id)
+  //     .then((quote) => {
+  //       return quote.update({ quote: args.quote });
+  //     });
+  // }
+
+// return models.Organization.create({
+//          id: '1100000',
+//          name: 'test'
+//        })
+
+// models.User.create({
+//     firstname: 'John',
+//     lastname: 'Doe',
+//     email: 'john.doe@example.com'
+//   })
 
 // user (root, { id }, context) {
 //   return models.User.findById(id, context);

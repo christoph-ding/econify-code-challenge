@@ -7,8 +7,8 @@ const typeDefs = `
   } 
 
   type Event {
-    id: ID!,
-    date: String!,
+    id: ID,
+    date: String,
     description: String,
     createdAt: String,
     updatedAt: String
@@ -16,16 +16,17 @@ const typeDefs = `
 
   type Location {
     id: ID,
-    name: String!,
+    name: String,
     address: String,
     latitude: String,
     longitude: String,
     createdAt: String,
     updatedAt: String
   }
-o
+
   # the schema allows the following query:
   type Query {
+    test: String
     organization(id: ID!): Organization
     organizations: [Organization]
     event(id: ID!): Event
@@ -35,7 +36,9 @@ o
   }
 
   type Mutation {
-    test: String
+    createOrganization(name: String!): Organization!
+    createEvent: String
+    createLocation: String
   }
 
   schema {
@@ -45,14 +48,3 @@ o
 `
 
 export default typeDefs;
-
-  // # this schema allows the following mutation:
-  // type Mutation {
-  // }
-
-  // organizations: [Organization]
-
-  // schema {
-  //   query: Query
-  //   mutation: Mutation
-  // }

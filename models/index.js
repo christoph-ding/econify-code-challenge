@@ -15,6 +15,7 @@ Location(sequelize);
 Event(sequelize);
 
 const models = sequelize.models;
+
 Object.keys(models).forEach(name => {
   if ('associate' in models[name]) {
     models[name].associate(models);

@@ -2,7 +2,15 @@ import Sequelize from 'sequelize';
 
 export default function (sequelize) {
   const Organization = sequelize.define('Organization', {
-    name: Sequelize.STRING,
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+      type: Sequelize.STRING,
+      unique: true
+    },
     createdAt: {
         type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -15,7 +23,8 @@ export default function (sequelize) {
     }
   })
 
-  // User.associate = (models) => {
-  //   User.hasMany(models.Project);
+  // Organization.associate = (models) => {
+  //   Organization.hasMany(models.Location);
+  //   Organization.hasMany(models.Event);
   // };
 }
