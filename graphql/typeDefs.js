@@ -7,7 +7,7 @@ const typeDefs = `
   } 
 
   type Event {
-    id: ID,
+    id: ID!,
     name: String!,
     date: String,
     description: String,
@@ -16,8 +16,8 @@ const typeDefs = `
   }
 
   type Location {
-    id: ID,
-    name: String,
+    id: ID!,
+    name: String!,
     address: String,
     latitude: String,
     longitude: String,
@@ -27,7 +27,6 @@ const typeDefs = `
 
   # the schema allows the following query:
   type Query {
-    test: String
     organization(id: ID!): Organization
     organizations: [Organization]
     event(id: ID!): Event
@@ -39,7 +38,7 @@ const typeDefs = `
   type Mutation {
     createOrganization(name: String!): Organization!
     createEvent(name: String!, date: String, description: String): Event!
-    createLocation: String
+    createLocation(name: String!, address: String, latitude: String, longitude: String): Location!
   }
 
   schema {

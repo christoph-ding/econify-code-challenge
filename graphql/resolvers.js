@@ -47,15 +47,6 @@ export default function resolvers () {
       },
       locations (root, args, context) {
         return models.Location.findAll({}, context);
-      },
-
-      test () {
-        console.log(" ... testing ...")
-        models.Organization.create({
-          id: '1000000123',
-          name: 'test'
-        })
-        return 'hey'
       }
     },
 
@@ -91,9 +82,25 @@ export default function resolvers () {
         })
       },      
 
-      createLocation () {
+      createLocation (root, {name, address, latitude, longitude}, context) {
         console.log('creating location')
-        return 'creating location'
+        console.log()
+        return Promise.resolve()
+        .then(() => {
+          return models.Location.create(
+            {name: name,
+             address: address,
+             latitude: latitude,
+             longitude: longitude
+            }
+          )
+        })
+        .then((item) => {
+          return item
+        })
+        .catch((err) => {
+          return err
+        })
       }
     }
   }

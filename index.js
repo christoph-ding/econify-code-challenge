@@ -9,7 +9,6 @@ import resolvers from './graphql/resolvers';
 
 // constants
 
-
 // GraphQL schema
 const schema = makeExecutableSchema({
   typeDefs,

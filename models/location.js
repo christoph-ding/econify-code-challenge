@@ -2,7 +2,10 @@ import Sequelize from 'sequelize';
 
 export default function (sequelize) {
   const Location = sequelize.define('Location', {
-    name: Sequelize.STRING,
+    name: {
+      type: Sequelize.STRING,
+      unique: true
+    },
     address: Sequelize.STRING,
     latitude: Sequelize.STRING,
     longitude: Sequelize.STRING,
