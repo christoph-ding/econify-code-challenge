@@ -5,27 +5,38 @@ export default function resolvers () {
 
   return {
     Query: {
-      organization (root, {id}, context) {
-        return {
-          'id': id
-        }
+      organization (root, {name}, context) {
+        return models.Organization.findlAll({
+          where: {
+            name: name
+          }
+        })
       },
+
       organizations (root, args, context) {
         return models.Organization.findAll({}, context);
       },
-      event (root, {id}, context) {
-        return {
-          'id': id
-        }
+
+      event (root, {name}, context) {
+        return models.Event.findAll({
+          where: {
+            name: name
+          }
+        })
       },
+
       events (root, args, context) {
         return models.Event.findAll({}, context);
       },
-      location () {
-        return {
-          'id': id
-        }
+
+      location (root, {name}, context) {
+        return models.Event.findAll({
+          where: {
+            name: name
+          }
+        })
       },
+
       locations (root, args, context) {
         return models.Location.findAll({}, context);
       }
@@ -193,6 +204,15 @@ export default function resolvers () {
         .catch((err) => {
           return err
         })
+      }
+    },
+
+    Organization: {
+      events (organization) {
+        return organization.getEvents();
+      },
+      locations(location) {
+        return organization.getLocations();
       }
     }
   }

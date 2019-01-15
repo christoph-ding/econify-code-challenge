@@ -3,7 +3,9 @@ const typeDefs = `
     id: ID!,
     name: String!,
     createdAt: String,
-    updatedAt: String
+    updatedAt: String,
+    events: [Event],
+    locations: [Location]
   }
 
   type Event {
@@ -27,11 +29,11 @@ const typeDefs = `
 
   # the schema allows the following query:
   type Query {
-    organization(id: ID!): Organization
+    organization(name: String!): Organization
     organizations: [Organization]
-    event(id: ID!): Event
+    event(name: String!): Event
     events: [Event]
-    location(id: ID!): Location
+    location(name: String!): Location
     locations: [Location]
   }
 
