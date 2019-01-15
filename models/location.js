@@ -20,4 +20,8 @@ export default function (sequelize) {
         allowNull: false
     }
   })
+
+  Location.associate = (models) => {
+    Location.belongsTo(models.Organization)    
+  }
 }

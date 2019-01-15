@@ -22,8 +22,10 @@ export default function (sequelize) {
         allowNull: false
     }
   })
+
+  Organization.associate = (models) => {
+    Organization.hasMany(models.Location);
+    Organization.hasMany(models.Event);
+  };
 }
-  // Organization.associate = (models) => {
-  //   Organization.hasMany(models.Location);
-  //   Organization.hasMany(models.Event);
-  // };
+  

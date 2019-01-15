@@ -19,4 +19,8 @@ export default function (sequelize) {
         allowNull: false
     } 
   })
+
+  Event.associate = (models) => {
+    Event.belongsTo(models.Organization)
+  }
 }
