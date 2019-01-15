@@ -1,24 +1,5 @@
 import sequelize from '../models';
 
-// example data
-const organizations = [
-  { id: 1, name: 'Tom'},
-  { id: 2, name: 'Sashko'},
-  { id: 3, name: 'Mikhail'}
-];
-
-const events = [
-  { id: 1, name: 'Tom'},
-  { id: 2, name: 'Sashko'},
-  { id: 3, name: 'Mikhail'}
-];
-
-const locations = [
-  { id: 1, name: 'Tom'},
-  { id: 2, name: 'Sashko'},
-  { id: 3, name: 'Mikhail'}
-];
-
 export default function resolvers () {
   const models = sequelize.models;
 
@@ -64,6 +45,24 @@ export default function resolvers () {
         })
       },
 
+      deleteOrganization (root, {name}, context) {
+        console.log('deleting organization ', name)
+        return Promise.resolve()
+        .then(() => {
+          return models.Organization.destroy({
+            where: {
+              name: name
+            }
+          })
+        })
+        .then((item) => {
+          return 'deleted organization ' + name
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
       createEvent (root, {name, date, description}, context) {
         return Promise.resolve()
         .then(() => {
@@ -82,9 +81,24 @@ export default function resolvers () {
         })
       },      
 
+      deleteEvent (root, {name}, context) {
+        return Promise.resolve()
+        .then(() => {
+          return models.Event.destroy({
+            where: {
+              name: name
+            }
+          })
+        })
+        .then((item) => {
+          return 'deleted event ' + name
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
       createLocation (root, {name, address, latitude, longitude}, context) {
-        console.log('creating location')
-        console.log()
         return Promise.resolve()
         .then(() => {
           return models.Location.create(
@@ -101,33 +115,24 @@ export default function resolvers () {
         .catch((err) => {
           return err
         })
+      },
+
+      deleteLocation (root, {name}, context) {
+        return Promise.resolve()
+        .then(() => {
+          return models.Location.destroy({
+            where: {
+              name: name
+            }
+          })
+        })
+        .then((item) => {
+          return 'deleted event ' + name
+        })
+        .catch((err) => {
+          return err
+        })
       }
     }
   }
 }
-
-  // resolve (source, args) {
-  //   return models.quote
-  //     .findById(args.id)
-  //     .then((quote) => {
-  //       return quote.update({ quote: args.quote });
-  //     });
-  // }
-
-// return models.Organization.create({
-//          id: '1100000',
-//          name: 'test'
-//        })
-
-// models.User.create({
-//     firstname: 'John',
-//     lastname: 'Doe',
-//     email: 'john.doe@example.com'
-//   })
-
-// user (root, { id }, context) {
-//   return models.User.findById(id, context);
-// },
-// users (root, args, context) {
-//   return models.User.findAll({}, context);
-// }

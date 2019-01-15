@@ -37,8 +37,11 @@ const typeDefs = `
 
   type Mutation {
     createOrganization(name: String!): Organization!
+    deleteOrganization(name: String!): String
     createEvent(name: String!, date: String, description: String): Event!
+    deleteEvent(name: String!): String
     createLocation(name: String!, address: String, latitude: String, longitude: String): Location!
+    deleteLocation: String
   }
 
   schema {
@@ -46,5 +49,6 @@ const typeDefs = `
     mutation: Mutation
   }
 `
+// createLocation(name: String!, address: String, latitude: String, longitude: String): Location!
 
 export default typeDefs;
