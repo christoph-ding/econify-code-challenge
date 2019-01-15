@@ -46,7 +46,6 @@ export default function resolvers () {
       },
 
       deleteOrganization (root, {name}, context) {
-        console.log('deleting organization ', name)
         return Promise.resolve()
         .then(() => {
           return models.Organization.destroy({
@@ -55,8 +54,24 @@ export default function resolvers () {
             }
           })
         })
-        .then((item) => {
-          return 'deleted organization ' + name
+        .then(() => {
+          return item
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
+      updateOrganization(root, {originalName, newName}, context) {
+        return Promise.resolve()
+        .then(() => {
+          return models.Organization.update(
+            {name: newName},
+            {where: {name: originalName}}
+          )
+        })
+        .then(() => {
+          return 'updated organization ' + originalName + ' to ' + newName
         })
         .catch((err) => {
           return err
@@ -90,8 +105,31 @@ export default function resolvers () {
             }
           })
         })
-        .then((item) => {
+        .then(() => {
           return 'deleted event ' + name
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
+      updateEvent(root, {originalName, name, date, description}, context) {
+        return Promise.resolve()
+        .then(() => {
+          let updateObject = {}
+          let updateFields = arguments[1]
+          for (let field in updateFields) {
+            if (field !== 'originalName') {
+              updateObject[field] = updateFields[field]
+            }
+          }
+          return models.Event.update(
+            updateObject,
+            {where: {name: originalName}}
+          )
+        })
+        .then(() => {
+          return 'updated event ' + originalName
         })
         .catch((err) => {
           return err
@@ -126,8 +164,31 @@ export default function resolvers () {
             }
           })
         })
-        .then((item) => {
+        .then(() => {
           return 'deleted event ' + name
+        })
+        .catch((err) => {
+          return err
+        })
+      },
+
+      updateLocation(root, {originalName, address, latitude, longitude}, context) {
+        return Promise.resolve()
+        .then(() => {
+          let updateObject = {}
+          let updateFields = arguments[1]
+          for (let field in updateFields) {
+            if (field !== 'originalName') {
+              updateObject[field] = updateFields[field]
+            }
+          }
+          return models.Location.update(
+            updateObject,
+            {where: {name: originalName}}
+          )
+        })
+        .then(() => {
+          return 'updated location ' + originalName
         })
         .catch((err) => {
           return err
